@@ -12,6 +12,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Test
+        env:
+          TOKEN: ${{ inputs.token }}
+        shell: bash
+        run: ls -al
+    - name: Test
+        env:
+          TOKEN: ${{ inputs.token }}
+        shell: bash
+        run: python app/main.py
     - uses: actions/checkout@v3
     - name: Transfer to S3 for Serving Api-Server
       uses: actions/setup-python@v4
