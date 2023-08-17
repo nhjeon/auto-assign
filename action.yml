@@ -19,6 +19,11 @@ runs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
+    - name: Test
+      env:
+        TOKEN: ${{ inputs.token }}
+      shell: bash
+      run: ls -al
 
     - name: Test
       env:
