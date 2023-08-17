@@ -27,5 +27,5 @@ runs:
       env:
         TOKEN : ${{ inputs.token }}
       shell: bash
-      run: python ./main.py
+      run: python main.py
 
