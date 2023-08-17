@@ -1,3 +1,3 @@
 import os
 
-print(os.getenv('TOKEN'))
+print(f"asdf{os.getenv('TOKEN')}asdf")
