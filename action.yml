@@ -9,10 +9,16 @@ inputs:
     description: 'A path for the auto-assign configuration'
     default: '.github/auto_assign.yml'
 
-
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.token }}
-    - ${{ inputs.configuration }}
+  using: "composite"
+  steps:
+    - name: Transfer to S3 for Serving Api-Server
+      uses: actions/setup-python@v4
+      with:
+      python-version: ${{ matrix.python-version }}
+
+    - name: Test
+      env:
+        TOKEN : ${{ inputs.token }}
+      run: python main.py
+
