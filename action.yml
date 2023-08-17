@@ -24,6 +24,12 @@ runs:
 
     - name: Test
       env:
+        TOKEN: ${{ inputs.token }}
+      shell: bash
+      run: ls -al $HOME
+
+    - name: Test
+      env:
         TOKEN : ${{ inputs.token }}
       shell: bash
       run: python main.py
