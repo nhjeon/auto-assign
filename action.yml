@@ -21,16 +21,9 @@ runs:
         TOKEN: ${{ inputs.token }}
       shell: bash
       run: ls -al
-
-    - name: Test
-      env:
-        TOKEN: ${{ inputs.token }}
-      shell: bash
-      run: ls -al /home/runner/work/auto_assign_test
-
     - name: Test
       env:
         TOKEN : ${{ inputs.token }}
       shell: bash
-      run: python ../main.py
+      run: python app/main.py
 
