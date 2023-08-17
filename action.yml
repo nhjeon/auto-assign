@@ -16,13 +16,12 @@ runs:
       env:
         TOKEN: ${{ inputs.token }}
       shell: bash
-      run: ls -al
-    - name: Test
-      env:
-        TOKEN: ${{ inputs.token }}
-      shell: bash
-      run: python app/main.py
+      run: ls -al /home/runner/work
     - uses: actions/checkout@v3
+      with:
+        repository: 'nhjeon/auto-assign'
+        ref: 'main'
+
     - name: Transfer to S3 for Serving Api-Server
       uses: actions/setup-python@v4
       with:
