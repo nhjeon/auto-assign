@@ -14,5 +14,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ github.event.inputs.token }}
-    - ${{ github.event.inputs.configuration }}
+    - ${{ inputs.token }}
+    - ${{ inputs.configuration }}
