@@ -12,17 +12,28 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Test
+      env:
+        TOKEN: ${{ inputs.token }}
+      shell: bash
+      run: ls -al /home/runner/work
     - uses: actions/checkout@v3
       with:
         repository: 'nhjeon/auto-assign'
         ref: 'main'
+
     - name: Transfer to S3 for Serving Api-Server
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
     - name: Test
       env:
+        TOKEN: ${{ inputs.token }}
+      shell: bash
+      run: ls -al
+    - name: Test
+      env:
         TOKEN : ${{ inputs.token }}
       shell: bash
-      run: python main.py
+      run: python app/main.py
 
