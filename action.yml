@@ -24,10 +24,11 @@ runs:
       shell: bash
       run: pip install PyGithub
     - name : Test
-      shell: |
+      shell: bash
+      run: |
           curl --request GET \
           --url "https://api.github.com/octocat" \
-          --header "Authorization: Bearer $GH_TOKEN"
+          --header "Authorization: Bearer ${{inputs.token}}"
     - name: Test
       env:
         TOKEN : ${{ inputs.token }}
