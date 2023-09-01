@@ -17,11 +17,17 @@ print(f"{os.getenv('GITHUB_PATH')}")
 print(f"{os.getenv('GITHUB_REPOSITORY')}")
 print(f"{os.getenv('GITHUB_BASE_REF')}")
 print(f"{os.getenv('GITHUB_REF')}")
+print(f"{os.getenv('TOKEN')}")
 
-repo = g.get_repo("nhjeon/auto_assign_test")
+
+repo = g.get_repo("nhjeon/auto_assign_test", lazy=True)
+print(repo.stargazers_count)
+
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
     print(pr.number)
+
+
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
     pass
