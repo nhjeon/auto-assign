@@ -13,7 +13,6 @@ g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}/api/v3", auth=auth)
 
 # Then play with your Github objects:
 
-print(f"{os.getenv('GITHUB_PATH')}")
 print(f"{os.getenv('GITHUB_REPOSITORY')}")
 print(f"{os.getenv('GITHUB_BASE_REF')}")
 print(f"{os.getenv('GITHUB_REF')}")
