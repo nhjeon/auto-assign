@@ -9,7 +9,7 @@ from github import Github
 auth = Auth.Token(os.getenv('TOKEN'))
 
 g = Github(auth=auth)
-g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}/api/v3", auth=auth)
+g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}", auth=auth)
 
 # Then play with your Github objects:
 
