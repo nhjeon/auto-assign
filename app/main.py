@@ -9,7 +9,7 @@ from github import Github
 auth = Auth.Token("access_token")
 
 g = Github(auth=auth)
-g = Github(base_url="https://github.com/api/v3", auth=auth)
+g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}/api/v3", auth=auth)
 
 # Then play with your Github objects:
 
@@ -17,9 +17,8 @@ print(f"{os.getenv('GITHUB_PATH')}")
 print(f"{os.getenv('GITHUB_REPOSITORY')}")
 print(f"{os.getenv('GITHUB_BASE_REF')}")
 print(f"{os.getenv('GITHUB_REF')}")
-print(f"{os.getenv('GITHUB_API_URL')}")
 
-repo = g.get_repo("PyGithub/PyGithub")
+repo = g.get_repo("nhjeon/auto_assign_test")
 
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
