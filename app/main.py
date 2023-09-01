@@ -6,7 +6,7 @@ from github import Auth
 from github import Github
 
 # using an access token
-auth = Auth.Token("access_token")
+auth = Auth.Token(os.getenv('TOKEN'))
 
 g = Github(auth=auth)
 g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}/api/v3", auth=auth)
@@ -19,7 +19,9 @@ print(f"{os.getenv('GITHUB_BASE_REF')}")
 print(f"{os.getenv('GITHUB_REF')}")
 
 repo = g.get_repo("nhjeon/auto_assign_test")
-
+pulls = repo.get_pulls(state='open')
+for pr in pulls:
+    print(pr.number)
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
     pass
