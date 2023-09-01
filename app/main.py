@@ -12,8 +12,6 @@ g = Github(auth=auth)
 g = Github(base_url="https://github.com/api/v3", auth=auth)
 
 # Then play with your Github objects:
-for repo in g.get_user().get_repos():
-    print(repo.name)
 
 print(f"asdf{os.getenv('TOKEN')}asdf")
 print(f"asdf{os.getenv('GITHUB_REPOSITORY')}asdf")
