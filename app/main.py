@@ -21,7 +21,6 @@ print(f"{os.getenv('TOKEN')}")
 
 
 repo = g.get_repo("nhjeon/auto_assign_test", lazy=True)
-print(repo.stargazers_count)
 
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
