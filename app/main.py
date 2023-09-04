@@ -21,14 +21,12 @@ print(os.getenv('REVIEWERS'))
 
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
+    print(pr.id)
+    print(pr.add_to_assignees(pr.user.login))
     print(pr.assignees)
-    pr.add_to_assignees(pr.user.name)
-    print(pr)
-    print(pr.assignees)
-    print(pr.assignees)
-    pr.add_to_assignees(pr.user.login)
-    print(pr)
-    print(pr.assignees)
+    print(pr.create_review_request([pr.user.login]))
+    print(pr.requested_reviewers)
+
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
     pass
