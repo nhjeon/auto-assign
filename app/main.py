@@ -15,9 +15,13 @@ print(f"{os.getenv('GITHUB_REF')}")
 
 repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'), lazy=True)
 
+print(os.getenv('REVIEWERS'))
+
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
-    print(pr)
+    print(pr.user)
+    print(pr.assignees)
+    print(pr.assignees)
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
     pass
