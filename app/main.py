@@ -11,21 +11,13 @@ auth = Auth.Token(os.getenv('TOKEN'))
 g = Github(auth=auth)
 g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}", auth=auth)
 
-# Then play with your Github objects:
-
-print(f"{os.getenv('GITHUB_REPOSITORY')}")
-print(f"{os.getenv('GITHUB_BASE_REF')}")
 print(f"{os.getenv('GITHUB_REF')}")
-print(f"{os.getenv('TOKEN')}")
 
-
-repo = g.get_repo("nhjeon/auto_assign_test", lazy=True)
+repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'), lazy=True)
 
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
-    print(pr.number)
-
-
+    print(pr)
 
 def assign_reviewer(branch: str, reviewer: List[str], github: Github):
     pass
