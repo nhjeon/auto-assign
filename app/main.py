@@ -27,7 +27,8 @@ for pr in pulls:
     print(pr.id)
     print(pr.add_to_assignees(pr.user.login))
     print(pr.assignees)
-    print(pr.create_review_request(reviewers))
+    for i in reviewers:
+        print(pr.create_review_request(i))
     print(pr.requested_reviewers)
 
 
