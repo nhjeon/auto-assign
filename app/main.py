@@ -17,14 +17,17 @@ print(f"{os.getenv('GITHUB_REF')}")
 
 repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'), lazy=True)
 
-print(os.getenv('REVIEWERS'))
+print()
+
+
+reviewers = [i.replace(' ', '') for i in  os.getenv('REVIEWERS').split(',')]
 
 pulls = repo.get_pulls(state='open')
 for pr in pulls:
     print(pr.id)
     print(pr.add_to_assignees(pr.user.login))
     print(pr.assignees)
-    print(pr.create_review_request([pr.user.login]))
+    print(pr.create_review_request(reviewers))
     print(pr.requested_reviewers)
 
 
