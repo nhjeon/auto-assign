@@ -1,7 +1,7 @@
 from github import Auth, GithubException
 from github import Github
 
-from app.env import GithubEnv, AppEnv
+from env import GithubEnv, AppEnv
 
 github_env = GithubEnv()
 app_env = AppEnv()
