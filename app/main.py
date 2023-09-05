@@ -2,7 +2,7 @@ import os
 from typing import List
 
 # Authentication is defined via github.Auth
-from github import Auth
+from github import Auth, GithubException
 from github import Github
 
 # using an access token
@@ -28,7 +28,11 @@ for pr in pulls:
     print(pr.add_to_assignees(pr.user.login))
     print(pr.assignees)
     for i in reviewers:
-        print(pr.create_review_request([i]))
+        try:
+            print(pr.create_review_request([i]))
+        except GithubException:
+            pass
+
     print(pr.requested_reviewers)
 
 
