@@ -30,8 +30,8 @@ for pr in pulls:
     for i in reviewers:
         try:
             print(pr.create_review_request([i]))
-        except GithubException:
-            pass
+        except GithubException as e:
+            print(e)
 
     print(pr.requested_reviewers)
 
