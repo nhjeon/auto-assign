@@ -1,43 +1,24 @@
-import os
-from typing import List
-
-# Authentication is defined via github.Auth
 from github import Auth, GithubException
 from github import Github
 
-# using an access token
-auth = Auth.Token(os.getenv('TOKEN'))
+from app.env import GithubEnv, AppEnv
 
-g = Github(auth=auth)
-g = Github(base_url=f"{os.getenv('GITHUB_API_URL')}", auth=auth)
+github_env = GithubEnv()
+app_env = AppEnv()
 
-print(f"{os.getenv('GITHUB_REF')}")
-#refs/pull/<pr_number>/merge
+print(github_env)
+print(app_env)
 
+github = Github(auth=Auth.Token(github_env.token))
+repo = github.get_repo(github_env.repository, lazy=True)
+pr = repo.get_pull(number=github_env.pr_number)
 
-repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'), lazy=True)
+pr.add_to_assignees(pr.user)
+print(f"assignee: {pr.assignees}")
 
-print()
-
-
-reviewers = [i.replace(' ', '') for i in  os.getenv('REVIEWERS').split(',')]
-
-pulls = repo.get_pulls(state='open')
-for pr in pulls:
-    print(pr.id)
-    print(pr.add_to_assignees(pr.user.login))
-    print(pr.assignees)
-    for i in reviewers:
-        try:
-            print(pr.create_review_request([i]))
-        except GithubException as e:
-            print(e)
-
-    print(pr.requested_reviewers)
-
-
-def assign_reviewer(branch: str, reviewer: List[str], github: Github):
-    pass
-
-def assign_reviewee(branch: str, reviewer: List[str], github: Github):
-    pass
+for i in app_env.reviewers:
+    try:
+        pr.create_review_request([i])
+    except GithubException as e:
+        print(f"{e.data['message']}: {i}")
+print(f"reviewers: {pr.requested_reviewers}")
