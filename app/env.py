@@ -19,12 +19,12 @@ class GithubEnv:
         return int(split_github_ref[2])
 
     def __init__(self):
-        self.token = os.getenv('TOKEN')
+        self.token = os.getenv('TOKEN', "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")
 
-        self.repository = os.getenv('GITHUB_REPOSITORY')
+        self.repository = os.getenv('GITHUB_REPOSITORY', "nhjeon/auto_assign_test")
 
         self.pr_number = self._parse_pr_number(
-            os.getenv('GITHUB_REF')
+            os.getenv('GITHUB_REF', "ref/main/27/merge")
         )
 
         if not self.token:
